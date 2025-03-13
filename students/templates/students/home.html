@@ -1,0 +1,113 @@
+{% extends "students/base.html" %}
+
+{% block title %}Home{% endblock title %}
+{% block navheader %}Home{% endblock navheader %}
+
+{% block style %}
+table{
+    width: 100%;
+}
+td{
+    border: 1px solid grey;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#table-heading{
+    text-align: center;
+}
+.tid{
+    width:4em;
+    text-align: center;
+}
+.tname{
+    width: auto;
+}
+.tbuttons{
+    width: 1px;
+    white-space: nowrap;
+}
+
+{% endblock style %}
+
+{% block header %}Student List{% endblock header %}
+
+
+
+
+{% block content %}
+<!--Main content-->
+<div id="student-container" class="border border-black my-3 mx-5 rounded-2">
+    
+    <!--add button-->
+    <div class='w-100 text-center my-3'>
+        <a href={% url "register" %} class="btn btn-success">
+            Add student
+                <i class="fa-solid fa-plus p-1"></i>
+        </a>
+    </div>
+
+
+    <!--student list-->
+    <div id="stlist">
+        <table>
+            <tr id="table-heading" class="sticky-top text-bg-dark">
+                <td class="tid">ID</td>
+                <td class="tname">Name</td>
+                <td class="tbuttons">Actions</td>
+            </tr>
+            {% for student in students %}
+            <tr>
+                <td class="tid">{{ student.id }}</td>
+                <td class="tname">{{ student.name }}</td>
+                <td class="tbuttons">
+                    <a href={% url "details" student.id %} class="btn btn-primary">View details</a>
+                    <a href={% url "update" student.id %} class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href={% url "delete" student.id %} class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+{% block toastMessage %}
+{% if messages%}
+    {% for message in messages %}
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+            <div class="toast-body">
+                {{ message }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock toastMessage %}
+
+
+
+{% block script %}
+document.addEventListener("DOMContentLoaded", function() {
+    const toastLiveExample = document.getElementById('liveToast');
+  
+    if (toastLiveExample) {
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();  // Show toast on page load
+    }
+  });
+{% endblock script %}
+
+
+
+

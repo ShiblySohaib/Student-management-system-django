@@ -1,0 +1,85 @@
+{% extends "students/base.html" %}
+
+{% block title %}Register{% endblock title %}
+{% block navheader %}Register{% endblock navheader %}
+
+{% block style %}
+    table{
+        width: 100%;
+    }
+    td{
+        padding:5px;
+    }
+    input[type=text],input[type=email]{
+        width: 100%;
+    }
+    input{
+        border-radius: 5px;
+        border: 1px solid grey;
+        color: black;
+    }
+{% endblock style %}
+
+{% block header %}Add Student Information{% endblock header %}
+
+
+
+{% block content %}
+<div class="border border-black m-3 rounded-2 p-3">
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+        {% for field in form %}
+            <tr>
+                <td>{{ field.label }}:</td>
+                <td>{{ field }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <div class="w-100 text-center d-flex justify-content-center gap-2">
+            <a href={% url "home" %} class="btn btn-danger">Cancel</a>
+            <button id="submit" type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+
+{% block toastMessage %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+            <div class="toast-body">
+                {{ message }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock toastMessage %}
+
+
+
+{% block script %}
+document.addEventListener("DOMContentLoaded", function() {
+    const toastLiveExample = document.getElementById('liveToast');
+  
+    if (toastLiveExample) {
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();  // Show toast on page load
+    }
+  });
+{% endblock script %}
+
+
+
+
+
+
+
+

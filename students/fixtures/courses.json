@@ -1,0 +1,59 @@
+[
+    {
+      "model": "students.course",
+      "pk": 1,
+      "fields": {
+        "name": "Introduction to Python"
+      }
+    },
+    {
+      "model": "students.course",
+      "pk": 2,
+      "fields": {
+        "name": "Data Structures and Algorithms"
+      }
+    },
+    {
+      "model": "students.course",
+      "pk": 3,
+      "fields": {
+        "name": "Web Development with Django"
+      }
+    },
+    {
+      "model": "students.course",
+      "pk": 4,
+      "fields": {
+        "name": "Machine Learning Basics"
+      }
+    },
+    {
+      "model": "students.course",
+      "pk": 5,
+      "fields": {
+        "name": "Database Management Systems"
+      }
+    },
+    {
+      "model": "students.course",
+      "pk": 6,
+      "fields": {
+        "name": "Advanced Python Programming"
+      }
+    },
+    {
+      "model": "students.course",
+      "pk": 7,
+      "fields": {
+        "name": "Software Engineering Principles"
+      }
+    },
+    {
+      "model": "students.course",
+      "pk": 8,
+      "fields": {
+        "name": "Cybersecurity Fundamentals"
+      }
+    }
+  ]
+  

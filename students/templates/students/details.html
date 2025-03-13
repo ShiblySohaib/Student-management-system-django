@@ -1,0 +1,52 @@
+{% extends "students/base.html" %}
+
+{% block title %}{{ student.name }}{% endblock title %}
+
+{% block style %}
+    table{
+        width: 100%;
+    }
+    td{
+        padding:5px;
+    }
+    input[type=text],input[type=email]{
+        width: 100%;
+    }
+    input{
+        border-radius: 5px;
+        border: 1px solid grey;
+        color: black;
+    }
+{% endblock style %}
+
+
+{% block header %}Student Details{% endblock header %}
+
+
+{% block content %}
+<div class="border border-black m-3 rounded-2 p-3">
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+        {% for field in form %}
+            <tr>
+                <td>{{ field.label }}:</td>
+                <td>{{ field }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <div class="w-100 text-center d-flex justify-content-center gap-2">
+            <a href={% url "update" student.id %} class="btn btn-warning">
+                Edit <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a href={% url "home" %} class="btn btn-success">
+                Go back
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+
+
